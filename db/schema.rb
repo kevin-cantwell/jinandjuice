@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610011419) do
+ActiveRecord::Schema.define(:version => 20130610033239) do
 
   create_table "friends", :force => true do |t|
     t.text     "email"
     t.text     "video"
     t.text     "photo"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "videos", :force => true do |t|
+    t.text     "title"
+    t.text     "panda_video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

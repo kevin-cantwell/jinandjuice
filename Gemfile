@@ -1,8 +1,9 @@
 source 'http://rubygems.org'
 
 gem 'jquery-rails'
-gem 'panda'
+gem 'panda', '~> 1.6.0'
 gem 'pg', :group => [:production]
+gem 'sidekiq'
 gem 'sqlite3', :group => [:development, :test]
 gem 'rails', '3.1.1'
 
