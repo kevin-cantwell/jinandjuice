@@ -1,9 +1,30 @@
-<a href="/entries/new">New Entry</a>
-<% @entry_forms.each do |form| %>
-  <p>
-    <a href="/entries/<%= form.entry.id %>/edit"><%= form.entry.inspect %></a>  <br/>
-    <%= form.entry.message.inspect %>  <br/>
-    <%= form.entry.photo.inspect %>  <br/> 
-    <%= form.entry.video.inspect %>  <br/>
-  </p>
-<% end %>
+<div class="nav">
+  <ul>
+    <% @entry_forms.each do |form| %>
+      <li><a href="/entries/<%= form.id %>"><%= form.entry.name %></a></li>
+    <% end %>
+  </ul>
+</div>
+<div class="container">
+  <div class="header">
+    That one time I met Amy...
+  </div>
+  <div class="entry">
+    <div class="square cta">
+
+    </div>
+    <a class="clicky" href="/entries/new">
+      New
+    </a>
+  </div>
+  <% @entry_forms.each do |form| %>
+    <div class="entry">
+      <div class="square" style="background: url('<%= form.poster %>') no-repeat center center;">
+
+      </div>
+      <a class="clicky" href="/entries/<%= form.id %>">
+
+      </a>
+    </div>
+  <% end %>
+</div>

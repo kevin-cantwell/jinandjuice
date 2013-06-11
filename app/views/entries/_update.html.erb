@@ -1,18 +1,17 @@
 <%= form_for @entry_form do |f| %>
   <p>
-    <%= f.label :name %>
+    <%= f.label :name, "Your name:" %>
     <%= f.text_field :name, title: "*required" %>
   </p>
   <p>
-    <%= f.label :email %>
+    <%= f.label :email, "Your email:" %>
     <%= f.text_field :email, title: "*required" %>
   </p>
-  <h1>I met Amy...</h1>
+  <h1>Leave a Message</h1>
   <p>
-    <%= f.label :message %>
-    <%= f.text_field :message, title: "I met Amy..." %>
+    <%= f.text_area :message, title: "I met Amy..." %>
   </p>
-  <h1>Photo</h1>
+  <h1>Upload a Photo</h1>
   <p>
     <%= f.label :photo_url %>
     <%= f.text_field :photo_url %>
@@ -24,7 +23,7 @@
   <% if @entry_form.photo_url %>
     <img src="<%= @entry_form.photo_url %>" />
   <% end %>
-  <h1>Video</h1>
+  <h1>Upload a Video</h1>
   <% if @video %>
     <% if @h264e.status == "success" && @ogg.status == "success" %>
       <video id="movie" width="<%= @h264e.width %>" height="<%= @h264e.height %>" preload="none" poster="<%= @h264e.screenshots.first %>" controls>

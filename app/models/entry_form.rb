@@ -25,7 +25,7 @@ class EntryForm < FormModel
   end
 
   def photo_attachment=(attachment)
-    (@message ||= Photo.new(entry_id: @entry.id)).attachment = attachment unless attachment.blank?
+    (@photo ||= Photo.new(entry_id: @entry.id)).attachment = attachment unless attachment.blank?
   end
 
   def message
@@ -44,20 +44,35 @@ class EntryForm < FormModel
     (@video ||= Video.new(entry_id: @entry.id)).panda_video_id = panda_video_id unless panda_video_id.blank?
   end
 
+  def poster
+    if @video
+      original_video ||= @video.panda_video
+      h264 = original_video.encodings["h264"]
+      h264.screenshots.first
+    elsif @photo
+      photo_url
+    else
+      "http://img0099.popscreencdn.com/110387874_amazoncom-happy-birthday-present-girl-laser-die-cut-arts.jpg"
+    end
+  end
+
+  def video_ogg
+    if @video
+      original_video ||= @video.panda_video
+      @h264e = original_video.encodings["h264"]
+      @ogg = original_video.encodings["ogg"]
+    end
+  end
+
   # Where the magic happens
   def attributes=(attributes)
     attributes.each { |k, v| self.send("#{k}=", v) }
   end
 
   def save!
-    Entry.transaction do
-      @entry.message_id = @message.id if @message
-      @entry.photo_id = @photo.id if @photo
-      @entry.video_id = @video.id if @video
-      @entry.save!
-      @photo.andand.save!
-      @message.andand.save!
-      @video.andand.save!
-    end
+    @entry.message = @message
+    @entry.photo = @photo
+    @entry.video = @video
+    @entry.save!
   end
 end

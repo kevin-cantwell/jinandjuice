@@ -5,3 +5,11 @@
  *= require_self
  *= require_tree . 
 */
+body {
+  font-family: 'Special Elite', 'Courier New', serif;
+  color: #484749;
+
+  a {
+    color: #484749;
+  }
+}

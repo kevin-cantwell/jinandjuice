@@ -1,3 +1,62 @@
-// Place all the styles related to the Entries controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.nav {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  float: left;
+  border-right: 1px solid gray;
+
+  ul {
+    list-style-type: none;
+    list-style-position: inside;
+    padding: 0;
+    li {
+      margin: 15px;
+    }
+    a {
+      color: black;
+    }
+  }
+}
+.container {
+  margin-left: 200px;
+}  
+.header {
+  margin: 30px;
+  font-size: 60px;
+}
+.square {
+  width: 270px;
+  height: 270px;
+  border-radius: 35px;
+}
+.clicky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 270px;
+  height: 270px;
+  margin: 20px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 270px;
+  text-decoration: none;
+  color: gray;
+  font-size: 60px;
+  font-weight: bold;
+}
+.cta {
+  border: 13px dotted gray;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.entry {
+  display: inline-block;
+  position: relative;
+  padding: 20px;
+}
+.guest-name {
+  font-size: 20px;
+  text-align: center;
+}
