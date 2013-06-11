@@ -17,7 +17,7 @@ class EntryForm < FormModel
   end
 
   def photo_url=(url)
-    (@photo ||= Photo.new(entry_id: @entry.id)).url = url unless url.blank?
+    (@photo ||= Photo.new(entry_id: @entry.id)).url = url
   end
 
   def photo_attachment
@@ -33,15 +33,7 @@ class EntryForm < FormModel
   end
 
   def message=(message)
-    (@message ||= Message.new(entry_id: @entry.id)).message = message unless message.blank?
-  end
-
-  def video_title
-    @video.andand.title
-  end
-
-  def video_title=(title)
-    (@video ||= Video.new(entry_id: @entry.id)).title = title unless title.blank?
+    (@message ||= Message.new(entry_id: @entry.id)).message = message
   end
 
   def panda_video_id
@@ -59,6 +51,9 @@ class EntryForm < FormModel
 
   def save!
     Entry.transaction do
+      @entry.message_id = @message.id if @message
+      @entry.photo_id = @photo.id if @photo
+      @entry.video_id = @video.id if @video
       @entry.save!
       @photo.andand.save!
       @message.andand.save!
