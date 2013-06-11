@@ -1,7 +1,8 @@
 Jinandjuice::Application.routes.draw do
   match "/panda/authorize_upload", :to => "panda#authorize_upload"
   resources :videos
-  root :to => 'videos#new'
+  resources :entries, as: :entry_forms
+  root :to => 'entries#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

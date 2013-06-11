@@ -1,0 +1,98 @@
+<%= form_for @entry_form do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name, title: "*required" %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email, title: "*required" %>
+  </p>
+  <h1>I met Amy...</h1>
+  <p>
+    <%= f.label :message %>
+    <%= f.text_field :message, title: "I met Amy..." %>
+  </p>
+  <h1>Photo</h1>
+  <p>
+    <%= f.label :photo_url %>
+    <%= f.text_field :photo_url %>
+  </p>
+  <p>
+    <%= f.label :photo_attachment, "Upload" %>
+    <%= f.file_field :photo_attachment %>
+  </p>
+  <% if @entry_form.photo_url %>
+    <img src="<%= @entry_form.photo_url %>" />
+  <% end %>
+  <h1>Video</h1>
+  <% if @video %>
+    <% if @h264e.status == "success" && @ogg.status == "success" %>
+      <video id="movie" width="<%= @h264e.width %>" height="<%= @h264e.height %>" preload="none" poster="<%= @h264e.screenshots.first %>" controls>
+        <source src="<%= @h264e.url %>" type="video/mp4" />
+        <source src="<%= @ogg.url %>" type="video/ogg" />
+      </video>
+    <% else %>
+       Your video is processing: <%= ((@h264e.encoding_progress.to_i / 2) + (@ogg.encoding_progress.to_i / 2)).to_i %>%
+    <% end %>
+  <% end %>
+  <!-- the control will appear next to this, and the video ID will be stored here after the upload -->
+  <div class="file-input-container">
+    <input type="hidden" name="entry_form[panda_video_id]" id="returned_video_id" />
+  </div>
+  <!-- upload progress bar (optional) -->
+  <div id="upload_progress" class="panda_upload_progress"></div>
+  <br/>
+  <%= f.submit "Submit" %>
+<% end %>
+
+<style>
+  .input-prompt {
+    position: absolute;
+    font-style: italic;
+    color: #aaa;
+    margin: 0.2em 0 0 0.5em;
+  }
+  .file-input-container {
+    width: 270px;
+    height: 480px;
+    background-color: blue;
+  }
+  input[type="file"] {
+    width: 200px;
+    background: none;
+  }
+</style>
+
+<script>
+  <% auth_params = Panda.signed_params('post', "/videos.json") %>
+  $("#returned_video_id").pandaUploader(<%=raw auth_params.to_json %>, {
+    upload_progress_id: 'upload_progress'
+  });
+  $('input[type="submit"]').removeAttr('disabled');
+
+  // For prompt text
+  $(document).ready(function(){
+    $('input[type=text][title],input[type=password][title],textarea[title]').each(function(i){
+      $(this).addClass('input-prompt-' + i);
+      var promptSpan = $('<span class="input-prompt"/>');
+      $(promptSpan).attr('id', 'input-prompt-' + i);
+      $(promptSpan).append($(this).attr('title'));
+      $(promptSpan).click(function(){
+        $(this).hide();
+        $('.' + $(this).attr('id')).focus();
+      });
+      if($(this).val() != ''){
+        $(promptSpan).hide();
+      }
+      $(this).before(promptSpan);
+      $(this).focus(function(){
+        $('#input-prompt-' + i).hide();
+      });
+      $(this).blur(function(){
+        if($(this).val() == ''){
+          $('#input-prompt-' + i).show().removeAttr('style');
+        }
+      });
+    });
+  });
+</script>

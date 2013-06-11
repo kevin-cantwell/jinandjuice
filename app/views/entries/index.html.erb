@@ -1,0 +1,9 @@
+<a href="/entries/new">New Entry</a>
+<% @entry_forms.each do |form| %>
+  <p>
+    <a href="/entries/<%= form.entry.id %>/edit"><%= form.entry.inspect %></a>  <br/>
+    <%= form.entry.message.inspect %>  <br/>
+    <%= form.entry.photo.inspect %>  <br/> 
+    <%= form.entry.video.inspect %>  <br/>
+  </p>
+<% end %>

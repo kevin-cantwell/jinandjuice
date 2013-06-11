@@ -11,15 +11,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610033239) do
+ActiveRecord::Schema.define(:version => 20130610214358) do
+
+  create_table "entries", :force => true do |t|
+    t.text     "email"
+    t.text     "name"
+    t.integer  "message_id"
+    t.integer  "photo_id"
+    t.integer  "video_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friends", :force => true do |t|
     t.text     "email"
-    t.text     "video"
-    t.text     "photo"
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "video_id"
+    t.integer  "photo_id"
+    t.integer  "message_id"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "entry_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "entry_id"
+    t.text     "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "videos", :force => true do |t|
@@ -27,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130610033239) do
     t.text     "panda_video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "entry_id"
   end
 
 end
