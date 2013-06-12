@@ -31,7 +31,7 @@ class EntriesController < ApplicationController
     entry_form.panda_video_id = params[:entry_form][:panda_video_id]
     entry_form.video_url = params[:entry_form][:video_url]
     entry_form.save!
-    redirect_to :action => :edit, :id => entry.id
+    redirect_to :action => :show, :id => entry.id
   end
 
   def create
@@ -44,6 +44,6 @@ class EntriesController < ApplicationController
     entry_form.panda_video_id = params[:entry_form][:panda_video_id]
     entry_form.video_url = params[:entry_form][:video_url]
     entry_form.save!
-    redirect_to :action => :edit, :id => entry_form.id
+    redirect_to :action => :show, :id => entry_form.id
   end
 end

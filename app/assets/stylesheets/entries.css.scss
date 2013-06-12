@@ -66,7 +66,7 @@
 
 /* show */
 
-.home {
+.directions {
   position: absolute;
   top: 0;
   left: 20px;
@@ -77,13 +77,6 @@
   line-height: 60px;
   font-size: 30px;
   text-align: center;
-}
-.edit {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  height: 40px;
-  line-height: 40px;
 }
 .story {
   margin: 40px 75px;
@@ -135,5 +128,11 @@
 }
 .event:last-child {
   border: none;
+}
+
+/* edit */
+
+.edit-form {
+  margin: 40px 75px;  
 }
 

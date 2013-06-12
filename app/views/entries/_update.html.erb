@@ -1,59 +1,57 @@
-<%= form_for @entry_form do |f| %>
-  <p>
-    <%= f.label :name, "Your name:" %>
-    <%= f.text_field :name, title: "*required" %>
-  </p>
-  <p>
-    <%= f.label :email, "Your email:" %>
-    <%= f.text_field :email, title: "*required" %>
-  </p>
-  <h1>Leave a Message</h1>
-  <p>
-    <%= f.text_area :message, title: "I met Amy..." %>
-  </p>
-  <h1>Upload a Photo</h1>
-  <p>
-    <%= f.label :photo_url, "From the web:" %>
-    <%= f.text_field :photo_url, title: "http://" %>
-  </p>
-  <p>
-    - or -
-  </p>
-  <p>
-    <%= f.label :photo_attachment, "From your computer:" %>
-    <%= f.file_field :photo_attachment %>
-  </p>
-  <% if @entry_form.photo_url %>
-    <img src="<%= @entry_form.photo_url %>" />
-  <% end %>
-  <h1>Upload a Video</h1>
-  <% if @entry_form.video? %>
-    <% if @entry_form.video_ready? %>
-      <video id="movie" width="<%= @entry_form.video_h264e.width %>" height="<%= @entry_form.video_h264e.height %>" preload="none" poster="<%= @entry_form.video_poster %>" controls>
-        <source src="<%= @entry_form.video_h264e.url %>" type="video/mp4" />
-        <source src="<%= @entry_form.video_ogg.url %>" type="video/ogg" />
-      </video>
-    <% else %>
-       Your video is processing: <%= @entry_form.video_percent_complete %>%
+<div class="name">
+  Editing: <%= @entry_form.name ? @entry_form.name : "New" %>
+</div>
+<div class="edit-form">
+  <%= form_for @entry_form do |f| %>
+    <p>
+      <%= f.label :name, "Your name:" %>
+      <%= f.text_field :name, title: "*required" %>
+    </p>
+    <p>
+      <%= f.label :email, "Your email:" %>
+      <%= f.text_field :email, title: "*required" %>
+    </p>
+    <h1>Leave a Message</h1>
+    <p>
+      <%= f.text_area :message, title: "I met Amy..." %>
+    </p>
+    <h1>Upload a Photo</h1>
+    <p>
+      <%= f.label :photo_url, "From the web:" %>
+      <%= f.text_field :photo_url, title: "http://" %>
+    </p>
+    <p>
+      - or -
+    </p>
+    <p>
+      <%= f.label :photo_attachment, "From your computer:" %>
+      <%= f.file_field :photo_attachment %>
+    </p>
+    <% if @entry_form.photo_url %>
+      <img src="<%= @entry_form.photo_url %>" />
     <% end %>
+    <h1>Upload a Video</h1>
+    <p>
+      <%= f.label :video_url, "From the web:" %>
+      <%= f.text_field :video_url, title: "http://" %>
+    </p>
+    <p>
+      - or -
+    </p>
+    <!-- the control will appear next to this, and the video ID will be stored here after the upload -->
+    <div class="file-input-container">
+      <label >From your computer:</label>
+      <input type="hidden" name="entry_form[panda_video_id]" id="returned_video_id" />
+    </div>
+    <!-- upload progress bar (optional) -->
+    <div id="upload_progress" class="panda_upload_progress"></div>
+    <br/>
+    <%= f.submit "Submit" %>
   <% end %>
-  <p>
-    <%= f.label :video_url, "From the web:" %>
-    <%= f.text_field :video_url, title: "http://" %>
-  </p>
-  <p>
-    - or -
-  </p>
-  <!-- the control will appear next to this, and the video ID will be stored here after the upload -->
-  <div class="file-input-container">
-    <label >From your computer:</label>
-    <input type="hidden" name="entry_form[panda_video_id]" id="returned_video_id" />
-  </div>
-  <!-- upload progress bar (optional) -->
-  <div id="upload_progress" class="panda_upload_progress"></div>
-  <br/>
-  <%= f.submit "Submit" %>
-<% end %>
+</div>
+<div class="directions">
+  <a href="/">Home</a> | <a href="/entries/<%= @entry_form.id %>">Show</a>
+</div>
 
 <style>
   .input-prompt {
