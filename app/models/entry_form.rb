@@ -17,7 +17,11 @@ class EntryForm < FormModel
   end
 
   def photo_url
-    @photo.andand.url || @photo.andand.attachment.andand.url
+    if @photo.andand.url.blank?
+      @photo.andand.attachment.andand.url
+    else
+      @photo.andand.url
+    end
   end
 
   def photo_url=(url)
