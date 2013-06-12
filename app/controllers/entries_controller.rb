@@ -17,12 +17,6 @@ class EntriesController < ApplicationController
 
   def edit
     entry = Entry.find(params[:id])
-    @video = entry.video
-    if @video
-      original_video = @video.panda_video
-      @h264e = original_video.encodings["h264"]
-      @ogg = original_video.encodings["ogg"]
-    end
     @entry_form = EntryForm.new(entry)
   end
 

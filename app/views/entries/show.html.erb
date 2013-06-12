@@ -1,0 +1,43 @@
+<div class="name">
+  <%= @entry_form.name %>
+</div>
+<div class="story">
+  <% if @entry_form.message? %>
+    <div class="event message">
+      <% split = @entry_form.message.split(' ') %>
+      <span class="<%= @entry_form.message.length > 430 ? 'first-word' : ''%>"><%= split.first %></span> <%= split.slice(1, split.length).join(' ') %>
+    </div>
+  <% end %>
+  <% if @entry_form.photo? %>
+    <div class="event photo">
+      <div align="center">
+        <span class="frame">
+          <img src="<%= @entry_form.photo_url %>" />
+        </span>
+      </div>
+    </div>
+  <% end %>
+  <% if @entry_form.video? %>
+
+    <div class="event video">
+      <div align="center">
+        <span class="frame">
+          <% if @entry_form.video_ready? %>
+            <video id="movie" width="<%= @entry_form.video_h264e.width %>" height="<%= @entry_form.video_h264e.height %>" preload="none" poster="<%= @entry_form.video_poster %>" controls>
+              <source src="<%= @entry_form.video_h264e.url %>" type="video/mp4" />
+              <source src="<%= @entry_form.video_ogg.url %>" type="video/ogg" />
+            </video>
+          <% else %>
+             Your video is processing: <%= @entry_form.video_percent_complete %>%
+          <% end %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="home">
+  <a href="/">Home</a>
+</div>
+<div class="edit">
+  <a href="/entries/<%= @entry_form.id %>/edit">Edit</a>
+</div>
