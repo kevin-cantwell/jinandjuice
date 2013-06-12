@@ -3,26 +3,16 @@
     <% @entry_forms.each do |form| %>
       <li><a href="/entries/<%= form.id %>"><%= form.entry.name %></a></li>
     <% end %>
+    <li><a href="/entries/new">New...</a></li>
   </ul>
 </div>
 <div class="container">
   <div class="header">
-    That one time I met Amy...
-  </div>
-  <div class="entry">
-    <div class="square cta">
-
-    </div>
-    <div class="first-name">
-      &nbsp;
-    </div>
-    <a class="clicky" href="/entries/new">
-      New
-    </a>
+    The time I met Amy...
   </div>
   <% @entry_forms.each do |form| %>
     <div class="entry">
-      <div class="square bg-ready" style="background-image: url('<%= form.poster %>');">
+      <div class="square bg-ready" style="<%= form.video? ? "" : "background-image: url('#{form.poster}');" %>">
 
       </div>
       <div class="first-name">
@@ -38,6 +28,17 @@
       </a>
     </div>
   <% end %>
+  <div class="entry">
+    <div class="square cta">
+
+    </div>
+    <div class="first-name">
+      &nbsp;
+    </div>
+    <a class="clicky" href="/entries/new">
+      New
+    </a>
+  </div>
 </div>
 
 <style>

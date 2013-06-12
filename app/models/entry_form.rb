@@ -74,17 +74,20 @@ class EntryForm < FormModel
 
   SAMPLE_GIFS = [
     "http://media.tumblr.com/tumblr_mb68nnWV8P1rnxf9c.gif", # Grumpy cat
-    "http://media.tumblr.com/862d32a9d39af33a6f044c348e0af0b3/tumblr_inline_mmx12uV2N91qz4rgp.gif", # Yellow guys
-    "http://media.tumblr.com/691e21f0ea8bfdaef1dc02aba8d0aced/tumblr_inline_mkmomxJDtV1qz4rgp.gif", # Fresh prince
+    "http://24.media.tumblr.com/tumblr_lvqom1E96A1qaeawvo1_500.png", # Tiny hat cat
+    "http://25.media.tumblr.com/tumblr_ljrr75Aiiy1qj4o5ko1_500.jpg", # Sad ear cat
+    "http://i735.photobucket.com/albums/ww352/miminachos/well%20then/birthday_cat.gif", # Birthdaycats
     "http://media0.giphy.com/media/achoDiZFxZvdm/original.gif", # Cats
-    "http://images.wikia.com/glee/images/6/6c/Birthday.gif" # Princess
+    "http://media0.giphy.com/media/achoDiZFxZvdm/original.gif", # Cats
+    "http://media0.giphy.com/media/achoDiZFxZvdm/original.gif", # Cats
+    "http://media0.giphy.com/media/achoDiZFxZvdm/original.gif" # Cats
   ]
 
   def poster
     if photo?
       photo_url
     else
-      SAMPLE_GIFS[@entry.id % SAMPLE_GIFS.length]
+      SAMPLE_GIFS.sample
     end
   end
 
