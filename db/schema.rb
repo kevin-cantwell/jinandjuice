@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612013937) do
+ActiveRecord::Schema.define(:version => 20130612033715) do
 
   create_table "entries", :force => true do |t|
     t.text     "email"
@@ -57,6 +57,10 @@ ActiveRecord::Schema.define(:version => 20130612013937) do
     t.datetime "updated_at"
     t.integer  "entry_id"
     t.text     "url"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
 end

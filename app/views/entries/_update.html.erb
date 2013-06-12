@@ -27,9 +27,6 @@
       <%= f.label :photo_attachment, "From your computer:" %>
       <%= f.file_field :photo_attachment %>
     </p>
-    <% if @entry_form.photo_url %>
-      <img src="<%= @entry_form.photo_url %>" />
-    <% end %>
     <h1>Upload a Video</h1>
     <p>
       <%= f.label :video_url, "From the web:" %>
@@ -38,13 +35,10 @@
     <p>
       - or -
     </p>
-    <!-- the control will appear next to this, and the video ID will be stored here after the upload -->
-    <div class="file-input-container">
-      <label >From your computer:</label>
-      <input type="hidden" name="entry_form[panda_video_id]" id="returned_video_id" />
-    </div>
-    <!-- upload progress bar (optional) -->
-    <div id="upload_progress" class="panda_upload_progress"></div>
+    <p>
+      <%= f.label :video_attachment, "From your computer:" %>
+      <%= f.file_field :video_attachment %>
+    </p>
     <br/>
     <%= f.submit "Submit" %>
   <% end %>
@@ -63,12 +57,6 @@
 </style>
 
 <script>
-  <% auth_params = Panda.signed_params('post', "/videos.json") %>
-  $("#returned_video_id").pandaUploader(<%=raw auth_params.to_json %>, {
-    upload_progress_id: 'upload_progress'
-  });
-  $('input[type="submit"]').removeAttr('disabled');
-
   // For prompt text
   $(document).ready(function(){
     $('input[type=text][title],input[type=password][title],textarea[title]').each(function(i){

@@ -1,9 +1,8 @@
 class Video < ActiveRecord::Base
-  validates_presence_of :panda_video_id
-
   belongs_to :entry
 
-  def panda_video
-    @panda_video ||= Panda::Video.find(panda_video_id)
-  end
+  has_attached_file :attachment
+  # ,
+  #               :url => "#{Rails.root}/app/assets/images/:basename.:extension",
+  #               :path => "#{Rails.root}/app/assets/images/products/:id/:style/:basename.:extension"
 end

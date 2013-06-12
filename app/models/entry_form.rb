@@ -54,28 +54,29 @@ class EntryForm < FormModel
   end
 
   def video_url
-    ""
-  end
-
-  def video_url=(url)
-    if url.present?
-      video = Panda::Video.create(:source_url => url)
-      self.panda_video_id = video.id
+    if @video.andand.url.blank?
+      @video.andand.attachment.andand.url
+    else
+      @video.andand.url
     end
   end
 
-  def panda_video_id
-    @video.andand.panda_video_id
+  def video_url=(url)
+    (@video ||= Video.new(entry_id: @entry.id)).url = url unless url.blank?
   end
 
-  def panda_video_id=(panda_video_id)
-    (@video ||= Video.new(entry_id: @entry.id)).panda_video_id = panda_video_id unless panda_video_id.blank?
+  def video_attachment
+    @video.andand.attachment
+  end
+
+  def video_attachment=(attachment)
+    (@Video ||= Video.new(entry_id: @entry.id)).attachment = attachment unless attachment.blank?
   end
 
   def video_poster
     return "https://s3.amazonaws.com/jinandjuice/jasonfeng.jpg" if @entry.id == 1
     if video?
-      video_h264e.screenshots.first
+      "https://s3.amazonaws.com/jinandjuice/jasonfeng.jpg"
     elsif photo?
       photo_url
     else
@@ -85,19 +86,11 @@ class EntryForm < FormModel
 
   def video_ready?
     return true if @entry.id == 1
-    video? && video_h264e.status == "success" && video_ogg.status == "success"
+    video?
   end
 
   def video_percent_complete
-    ((video_h264e.encoding_progress.to_i / 2) + (video_ogg.encoding_progress.to_i / 2)).to_i
-  end
-
-  def video_h264e
-    panda_video.andand.encodings["h264"]
-  end
-
-  def video_ogg
-    panda_video.andand.encodings["ogg"]
+    0
   end
 
   # Where the magic happens
