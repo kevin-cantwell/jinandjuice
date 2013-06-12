@@ -68,12 +68,12 @@ class EntryForm < FormModel
   end
 
   def video_poster
-    if @video
+    if video?
       video_h264e.screenshots.first
-    elsif @photo
+    elsif photo?
       photo_url
     else
-      "http://img0099.popscreencdn.com/110387874_amazoncom-happy-birthday-present-girl-laser-die-cut-arts.jpg"
+      "http://media.tumblr.com/tumblr_mb68nnWV8P1rnxf9c.gif"
     end
   end
 
