@@ -72,13 +72,17 @@ class EntryForm < FormModel
     (@video ||= Video.new(entry_id: @entry.id)).attachment = attachment unless attachment.blank?
   end
 
-  def video_poster
+  def poster
     if video?
-      "http://cdn.shopify.com/s/files/1/0095/4332/t/12/assets/menu_support_video.png"
+      "/assets/reel.png"
     elsif photo?
       photo_url
     else
-      "http://media.tumblr.com/tumblr_mb68nnWV8P1rnxf9c.gif"
+     ["http://media.tumblr.com/1a89348535faebbe182109ef87fcdbd0/tumblr_inline_mo8hclHwU71qz4rgp.gif",
+      "http://media.tumblr.com/tumblr_mb68nnWV8P1rnxf9c.gif",
+      "http://media.tumblr.com/1226824fa92f9c53d3c102d631d5bceb/tumblr_inline_mnpxzlhVHZ1qz4rgp.gif",
+      "http://media.tumblr.com/2d63d8eebaa86c521b423318f2e9fe15/tumblr_inline_mns3oclGMC1qz4rgp.gif",
+      "http://25.media.tumblr.com/dbc2db23f7791ef211daa36639bf3868/tumblr_mnpxd0BGB71sqfkdpo1_500.gif"].sample
     end
   end
 

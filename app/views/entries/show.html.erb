@@ -23,7 +23,7 @@
       <div align="center">
         <% if @entry_form.video_ready? %>
           <span class="frame">
-            <video class="vjs-tech" id="video-0_html5_api" preload="auto" poster="<%= @entry_form.video_poster %>" src="<%= @entry_form.video_url %>" controls></video>
+            <video preload="auto" src="<%= @entry_form.video_url %>" controls></video>
           </span>
         <% else %>
            Your video is processing: <%= @entry_form.video_percent_complete %>%

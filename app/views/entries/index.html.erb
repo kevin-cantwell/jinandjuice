@@ -19,9 +19,14 @@
   </div>
   <% @entry_forms.each do |form| %>
     <div class="entry">
-      <div class="square" style="background: url('<%= form.video_poster %>') no-repeat center center;">
+      <div class="square" style="background: url('<%= form.poster %>') repeat-x center center; background-size: auto 100%">
 
       </div>
+      <% if form.video? %>
+        <div class="clippy">
+          <video class="video-bg" preload="auto" src="<%= form.video_url %>"></video>
+        </div>
+      <% end %>
       <a class="clicky" href="/entries/<%= form.id %>">
 
       </a>

@@ -47,6 +47,15 @@
   font-size: 60px;
   font-weight: bold;
 }
+.clippy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 270px;
+  margin: 20px;
+  clip: rect(0px 230px 270px 40px);
+}
 .cta {
   border: 13px dotted gray;
   -moz-box-sizing: border-box;
@@ -123,7 +132,7 @@
   }
 }
 .event {
-  padding: 15px;
+  padding: 25px;
   // border-bottom: 1px solid gray;
 }
 .event:last-child {
