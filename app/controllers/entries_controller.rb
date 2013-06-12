@@ -29,6 +29,7 @@ class EntriesController < ApplicationController
     entry_form.photo_attachment = params[:entry_form][:photo_attachment]
     entry_form.message = params[:entry_form][:message]
     entry_form.panda_video_id = params[:entry_form][:panda_video_id]
+    entry_form.video_url = params[:entry_form][:video_url]
     entry_form.save!
     redirect_to :action => :edit, :id => entry.id
   end
@@ -41,6 +42,7 @@ class EntriesController < ApplicationController
     entry_form.photo_attachment = params[:entry_form][:photo_attachment]
     entry_form.message = params[:entry_form][:message]
     entry_form.panda_video_id = params[:entry_form][:panda_video_id]
+    entry_form.video_url = params[:entry_form][:video_url]
     entry_form.save!
     redirect_to :action => :edit, :id => entry_form.id
   end

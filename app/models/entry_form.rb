@@ -48,6 +48,17 @@ class EntryForm < FormModel
     @video.present?
   end
 
+  def video_url
+    ""
+  end
+
+  def video_url=(url)
+    if url.present?
+      video = Panda::Video.create(:source_url => url)
+      self.panda_video_id = video.id
+    end
+  end
+
   def panda_video_id
     @video.andand.panda_video_id
   end

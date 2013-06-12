@@ -13,11 +13,14 @@
   </p>
   <h1>Upload a Photo</h1>
   <p>
-    <%= f.label :photo_url %>
-    <%= f.text_field :photo_url %>
+    <%= f.label :photo_url, "From the web:" %>
+    <%= f.text_field :photo_url, title: "http://" %>
   </p>
   <p>
-    <%= f.label :photo_attachment, "Upload" %>
+    - or -
+  </p>
+  <p>
+    <%= f.label :photo_attachment, "From your computer:" %>
     <%= f.file_field :photo_attachment %>
   </p>
   <% if @entry_form.photo_url %>
@@ -34,8 +37,16 @@
        Your video is processing: <%= @entry_form.video_percent_complete %>%
     <% end %>
   <% end %>
+  <p>
+    <%= f.label :video_url, "From the web:" %>
+    <%= f.text_field :video_url, title: "http://" %>
+  </p>
+  <p>
+    - or -
+  </p>
   <!-- the control will appear next to this, and the video ID will be stored here after the upload -->
   <div class="file-input-container">
+    <label >From your computer:</label>
     <input type="hidden" name="entry_form[panda_video_id]" id="returned_video_id" />
   </div>
   <!-- upload progress bar (optional) -->
@@ -49,16 +60,7 @@
     position: absolute;
     font-style: italic;
     color: #aaa;
-    margin: 0.2em 0 0 0.5em;
-  }
-  .file-input-container {
-    width: 270px;
-    height: 480px;
-    background-color: blue;
-  }
-  input[type="file"] {
-    width: 200px;
-    background: none;
+    margin: 0.4em 0 0 0.5em;
   }
 </style>
 

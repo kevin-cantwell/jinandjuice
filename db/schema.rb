@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610214358) do
+ActiveRecord::Schema.define(:version => 20130612013937) do
 
   create_table "entries", :force => true do |t|
     t.text     "email"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130610214358) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "entry_id"
+    t.text     "url"
   end
 
 end
