@@ -12,6 +12,18 @@ class EntryForm < FormModel
     @video = entry.video
   end
 
+  def message?
+    !message.blank?
+  end
+
+  def message
+    @message.andand.message
+  end
+
+  def message=(message)
+    (@message ||= Message.new(entry_id: @entry.id)).message = message
+  end
+
   def photo?
     !photo_url.blank?
   end
@@ -36,18 +48,6 @@ class EntryForm < FormModel
     (@photo ||= Photo.new(entry_id: @entry.id)).attachment = attachment unless attachment.blank?
   end
 
-  def message?
-    !message.blank?
-  end
-
-  def message
-    @message.andand.message
-  end
-
-  def message=(message)
-    (@message ||= Message.new(entry_id: @entry.id)).message = message
-  end
-
   def video?
     return true if @entry.id == 1
     @video.present?
@@ -70,7 +70,7 @@ class EntryForm < FormModel
   end
 
   def video_attachment=(attachment)
-    (@Video ||= Video.new(entry_id: @entry.id)).attachment = attachment unless attachment.blank?
+    (@video ||= Video.new(entry_id: @entry.id)).attachment = attachment unless attachment.blank?
   end
 
   def video_poster
