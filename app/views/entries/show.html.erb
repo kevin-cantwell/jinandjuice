@@ -21,16 +21,16 @@
 
     <div class="event video">
       <div align="center">
-        <span class="frame">
-          <% if @entry_form.video_ready? %>
+        <% if @entry_form.video_ready? %>
+          <span class="frame">
             <video id="movie" width="<%= @entry_form.video_h264e.width %>" height="<%= @entry_form.video_h264e.height %>" preload="none" poster="<%= @entry_form.video_poster %>" controls>
               <source src="<%= @entry_form.video_h264e.url %>" type="video/mp4" />
               <source src="<%= @entry_form.video_ogg.url %>" type="video/ogg" />
             </video>
-          <% else %>
-             Your video is processing: <%= @entry_form.video_percent_complete %>%
-          <% end %>
-        </span>
+          </span>
+        <% else %>
+           Your video is processing: <%= @entry_form.video_percent_complete %>%
+        <% end %>
       </div>
     </div>
   <% end %>
