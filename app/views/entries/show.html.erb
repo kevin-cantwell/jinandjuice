@@ -23,10 +23,14 @@
       <div align="center">
         <% if @entry_form.video_ready? %>
           <span class="frame">
-            <video id="movie" width="<%= @entry_form.video_h264e.width %>" height="<%= @entry_form.video_h264e.height %>" preload="none" poster="<%= @entry_form.video_poster %>" controls>
-              <source src="<%= @entry_form.video_h264e.url %>" type="video/mp4" />
-              <source src="<%= @entry_form.video_ogg.url %>" type="video/ogg" />
-            </video>
+            <% if @entry_form.id == 1 %>
+              <video class="vjs-tech" id="video-0_html5_api" preload="auto" poster="https://s3.amazonaws.com/jinandjuice/jasonfeng.jpg" src="https://s3.amazonaws.com/jinandjuice/AMYJIN30.m4v" controls></video>
+            <% else %>
+              <video id="movie" width="<%= @entry_form.video_h264e.width %>" height="<%= @entry_form.video_h264e.height %>" preload="none" poster="<%= @entry_form.video_poster %>" controls>
+                <source src="<%= @entry_form.video_h264e.url %>" type="video/mp4" />
+                <source src="<%= @entry_form.video_ogg.url %>" type="video/ogg" />
+              </video>
+            <% end %>
           </span>
         <% else %>
            Your video is processing: <%= @entry_form.video_percent_complete %>%

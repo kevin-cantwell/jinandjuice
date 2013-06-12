@@ -25,7 +25,7 @@ class EntryForm < FormModel
   end
 
   def photo_url=(url)
-    (@photo ||= Photo.new(entry_id: @entry.id)).url = url
+    (@photo ||= Photo.new(entry_id: @entry.id)).url = url unless url.blank?
   end
 
   def photo_attachment
@@ -72,6 +72,7 @@ class EntryForm < FormModel
   end
 
   def video_poster
+    return "https://s3.amazonaws.com/jinandjuice/jasonfeng.jpg" if @entry.id == 1
     if video?
       video_h264e.screenshots.first
     elsif photo?
