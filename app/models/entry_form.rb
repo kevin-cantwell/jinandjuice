@@ -49,6 +49,7 @@ class EntryForm < FormModel
   end
 
   def video?
+    return true if @entry.id == 1
     @video.present?
   end
 
@@ -84,7 +85,7 @@ class EntryForm < FormModel
 
   def video_ready?
     return true if @entry.id == 1
-    video_h264e.status == "success" && video_ogg.status == "success"
+    video? && video_h264e.status == "success" && video_ogg.status == "success"
   end
 
   def video_percent_complete
@@ -92,11 +93,11 @@ class EntryForm < FormModel
   end
 
   def video_h264e
-    panda_video.encodings["h264"]
+    panda_video.andand.encodings["h264"]
   end
 
   def video_ogg
-    panda_video.encodings["ogg"]
+    panda_video.andand.encodings["ogg"]
   end
 
   # Where the magic happens
