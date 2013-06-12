@@ -22,7 +22,7 @@
   </div>
   <% @entry_forms.each do |form| %>
     <div class="entry">
-      <div class="square" style="background: url('<%= form.poster %>') repeat-x center center; background-size: auto 100%">
+      <div class="square bg-ready" style="background-image: url('<%= form.poster %>');">
 
       </div>
       <div class="first-name">
@@ -39,3 +39,18 @@
     </div>
   <% end %>
 </div>
+
+<style>
+.bg-ready {
+  background-color: gray;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: auto auto;
+}
+</style>
+
+<script>
+  $(document).ready(function() {
+
+  });
+</script>

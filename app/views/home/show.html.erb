@@ -23,10 +23,3 @@ Hello Jin
 <% else %>
    Your video is processing: <%= @h264e.encoding_progress.to_i %>%
 <% end %>
-
-<script>
-  <% auth_params = Panda.signed_params('post', "/videos.json") %>
-  jQuery("#returned_video_id").pandaUploader(<%=raw auth_params.to_json %>, {
-    upload_progress_id: 'upload_progress'
-  });
-</script>

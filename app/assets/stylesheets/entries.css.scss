@@ -51,6 +51,7 @@
   color: gray;
   font-size: 60px;
   font-weight: bold;
+  background: url('/assets/whitecorners.png') no-repeat top left;
 }
 .clippy {
   position: absolute;
@@ -59,7 +60,7 @@
   display: block;
   height: 270px;
   margin: 20px;
-  clip: rect(0px 230px 270px 40px);
+  clip: rect(0px 270px 270px 0px);
   video {
     position: absolute;
     top: 0;
@@ -131,7 +132,7 @@
 .video {
   .frame {
     padding: 0 60px;
-    background: url(/assets/reel.png) repeat-y top left;
+    background: black;
     background-size: 100% auto;
     background-color: #f0f0f0;
     box-shadow: 5px 5px 5px #888888;

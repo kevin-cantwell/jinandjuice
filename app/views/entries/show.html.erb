@@ -4,8 +4,16 @@
 <div class="story">
   <% if @entry_form.message? %>
     <div class="event message">
-      <% split = @entry_form.message.split(' ') %>
-      <span class="<%= @entry_form.message.length > 430 ? 'first-word' : ''%>"><%= split.first %></span> <%= split.slice(1, split.length).join(' ') %>
+      <% paragraphs = @entry_form.message.split(/(\r\n)+/) %>
+      <p>
+        <% split = paragraphs.first.split(' ') %>
+        <span class="<%= @entry_form.message.length > 430 ? 'first-word' : ''%>"><%= split.first %></span> <%= split.slice(1, split.length).join(' ') %>
+      </p>
+      <% paragraphs.slice(1, paragraphs.length).each do |paragraph| %>
+        <p style="text-indent: 20px">
+          <%= paragraph %>
+        </p>
+      <% end %>
     </div>
   <% end %>
   <% if @entry_form.photo? %>

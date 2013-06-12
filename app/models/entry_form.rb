@@ -73,9 +73,7 @@ class EntryForm < FormModel
   end
 
   def poster
-    if video?
-      "/assets/reel.png"
-    elsif photo?
+    if photo?
       photo_url
     else
      ["http://media.tumblr.com/1a89348535faebbe182109ef87fcdbd0/tumblr_inline_mo8hclHwU71qz4rgp.gif",
