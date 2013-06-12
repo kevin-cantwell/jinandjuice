@@ -76,7 +76,7 @@ class EntryForm < FormModel
   def video_poster
     return "https://s3.amazonaws.com/jinandjuice/jasonfeng.jpg" if @entry.id == 1
     if video?
-      "https://s3.amazonaws.com/jinandjuice/jasonfeng.jpg"
+      "http://cdn.shopify.com/s/files/1/0095/4332/t/12/assets/menu_support_video.png"
     elsif photo?
       photo_url
     else
