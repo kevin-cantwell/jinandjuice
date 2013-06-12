@@ -72,15 +72,19 @@ class EntryForm < FormModel
     (@video ||= Video.new(entry_id: @entry.id)).attachment = attachment unless attachment.blank?
   end
 
+  SAMPLE_GIFS = [
+    "http://media.tumblr.com/tumblr_mb68nnWV8P1rnxf9c.gif", # Grumpy cat
+    "http://media.tumblr.com/862d32a9d39af33a6f044c348e0af0b3/tumblr_inline_mmx12uV2N91qz4rgp.gif", # Yellow guys
+    "http://media.tumblr.com/691e21f0ea8bfdaef1dc02aba8d0aced/tumblr_inline_mkmomxJDtV1qz4rgp.gif", # Fresh prince
+    "http://media0.giphy.com/media/achoDiZFxZvdm/original.gif", # Cats
+    "http://images.wikia.com/glee/images/6/6c/Birthday.gif" # Princess
+  ]
+
   def poster
     if photo?
       photo_url
     else
-     ["http://media.tumblr.com/1a89348535faebbe182109ef87fcdbd0/tumblr_inline_mo8hclHwU71qz4rgp.gif",
-      "http://media.tumblr.com/tumblr_mb68nnWV8P1rnxf9c.gif",
-      "http://media.tumblr.com/1226824fa92f9c53d3c102d631d5bceb/tumblr_inline_mnpxzlhVHZ1qz4rgp.gif",
-      "http://media.tumblr.com/2d63d8eebaa86c521b423318f2e9fe15/tumblr_inline_mns3oclGMC1qz4rgp.gif",
-      "http://25.media.tumblr.com/dbc2db23f7791ef211daa36639bf3868/tumblr_mnpxd0BGB71sqfkdpo1_500.gif"].sample
+      SAMPLE_GIFS[@entry.id % SAMPLE_GIFS.length]
     end
   end
 
