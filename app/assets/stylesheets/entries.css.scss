@@ -83,10 +83,19 @@
   font-size: 20px;
   text-align: center;
 }
-
+.bg-ready {
+  background-color: gray;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: auto auto;
+}
+.meow {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
 
 /* show */
-
 .directions {
   position: absolute;
   top: 0;
